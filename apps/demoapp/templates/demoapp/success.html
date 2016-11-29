@@ -1,0 +1,110 @@
+ <!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>My Django Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'demoapp/css/demo.css' %}">  
+  </head>
+  <body>
+  <!--  -->
+    <nav class="navbar navbar-inverse navcolor" id="dash">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand" href="">Travel Buddy</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/travels/add">Add Travel Plan</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{request.session.user}}<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <form action='/logout' method = 'post'>
+                    {% csrf_token %}
+                    <li><input type='submit' class = "btn" value='Logout'></li>
+                  </form>
+                </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  <!--  -->
+  <div class="addbg"></div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 nice">
+      <h2>Have a Nice Travel {{request.session.user}}!</h2>
+    </div>
+  <div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 showContent">
+    <h3>Your Trip schedules</h3>
+    <table class="table table-striped table-hover">
+      <tr class="tab">
+        <th>Destination</th>
+        <th>Travel Start date</th>
+        <th>Travel End Date</th>
+        <th>Plan</th>
+      </tr>
+      <tr>
+        {%for travel in travels %}
+        <tr>
+         <td><a href='/travels/destination/{{travel.id}}' class="bold">{{travel.destination}}</a></td>
+          <td>{{travel.travelstart}}</td>
+          <td>{{travel.travelend}}</td>
+          <td>{{travel.description}}</td>
+        </tr>
+        {%endfor %} 
+        {%for travel in joiners %}
+          <tr>
+          <td><a href='/travels/destination/{{travel.id}}' class="bold">{{travel.destination}}</a></td>
+          <td>{{travel.travelstart}}</td>
+          <td>{{travel.travelend}}</td>
+          <td>{{travel.description}}</td>
+          </tr>
+        {%endfor %}
+    </tr>
+    </table>
+  </div>
+  </div>
+  <!--  -->
+  <div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 showContent">
+    <h3>Other Users Travel plans</h3>
+    <table class="table table-striped table-hover">
+      <tr class="tab">
+        <th>Username</th>
+        <th>Destination</th>
+        <th>Travel Start date</th>
+        <th>Travel End Date</th>
+        <th>Join Trip</th>
+      </tr>
+      <tr>
+        {%for trip in trips %}
+        <tr>
+          <td>{{trip.user.name}}</td>
+          <td><a href='/travels/destination/{{trip.id}}' class="bold">{{trip.destination}}</a></td>
+          <td>{{trip.travelstart}}</td>
+          <td>{{trip.travelend}}</td>
+          <td><a href="{{trip.id}}" class="btn great">join</a></td>
+        </tr>
+        {%endfor %} 
+    </tr>
+    </table>
+  </div>
+  </div>
+  </body>
+</html>
+
+  

@@ -1,0 +1,88 @@
+#dash{
+    color: black;
+   /* background-color: rgb(44,62,80);*/
+    border-color: #2e9a72;
+}
+#dash a{
+   color: white; 
+}
+.addbg{
+  background-image: url('../images/i4.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.showContent {
+  margin-top: 5%;
+  padding: 3%;
+  background-color: #e5e5e5;
+  /*background-color: #9BB1C9*/
+  border: 3px solid #2e9a72;
+}
+.tab{
+	border-bottom: 2px solid rgb(44,62,80);
+}
+.nice{
+	color: maroon;
+}
+.bold{
+	font-style: italic;
+	color: #2e9a72;
+	font-weight: bold;
+}
+.great {
+  border: 1px solid rgb(44,62,80);
+  color: rgb(44,62,80);
+  background-color: #42DCA3;
+}
+.great:hover,
+.great:focus {
+  border: 1px solid rgb(44,62,80);
+  outline: none;
+  color: black;
+  background-color: #42DCA3;
+}
+.background{
+  background-image: url('../images/i6.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.formBox {
+  background-color: #e5e5e5;
+  border: 3px solid #42DCA3;
+  margin-top: 6%;
+}
+#color{
+    color: black;
+/*    background-color:  white;*/
+  /*  border: 2px solid #42DCA3;*/
+}
+/*#color a{
+   color: black; 
+}*/
+.green{
+	color: #34b082;
+	font-style: italic;
+	font-weight: bold;
+	margin-top: 2%;
+}
+.destination{
+    text-transform: capitalize;
+    color: maroon;
+}
+.travellers{
+    text-transform: capitalize;
+    font-size: 20px;
+}
+.others{
+	color: maroon;
+}

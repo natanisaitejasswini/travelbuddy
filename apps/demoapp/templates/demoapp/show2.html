@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>My Django coding add trip Page</title>
+    {%load staticfiles%}
+     <link rel="stylesheet" href="{% static 'demoapp/css/demo.css' %}">  
+    <body>
+        <nav class="navbar navbar-inverse navcolor" id="color">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/travels">Travel Buddy Dashboard</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/travels/add">Plan a Trip</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{request.session.user}}<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <form action='/logout' method = 'post'>
+                    {% csrf_token %}
+                    <li><input type='submit' class = "btn" value='Logout'></li>
+                  </form>
+                </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <!-- Nav ends -->
+        <div class="background"></div>
+        <div class="container">
+          <center><h1>Trip Details</h1></center>
+            <div class="row">
+              <div class="col-lg-5 col-lg-offset-4 col-md-1 col-md-offset-1 formBox">
+                <div class="form-group col-md-11">
+                  <center><h3 class="destination">{{trips.destination}}</h3></center>
+                  <p>Planned By: {{trips.user.name}}</p>
+                  <p>Description: {{trips.description}}</p>
+                  <p>Travel Date From: {{trips.travelstart}}</p>
+                  <p>Travel Date To: {{trips.travelend}}</p>
+                <center><h2 class="others">Other users joining the trip</h2></center>
+                {% for person in trips.traveller.all%}
+                  <li class="travellers">{{person.name}}</li>
+                {%endfor%}
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- Container ends -->
+      </body>
+  </html>
+
+    

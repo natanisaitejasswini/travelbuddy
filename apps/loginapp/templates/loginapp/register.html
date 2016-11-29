@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>My Django coding Login Page</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'loginapp/css/loginreg.css' %}">  
+    <body>
+        <nav class="navbar navbar-inverse navcolor" id="color">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">Travel Buddy</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Login</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <!-- Nav ends -->
+        <div class="background"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 col-lg-offset-4 col-md-3 col-md-offset-4 formBox">
+              <div class="form-group col-md-8">
+                <h1>Register</h1>
+                <form action='/registration' method="Post">
+                  {% csrf_token %}
+                <div class="form-group">
+                  <label for="name">First Name</label>
+                  <input name="name" type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input name="username" type="text" class="form-control" id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="confirm_password">Confirm-Password</label>
+                  <input name="confirm_password" type="password" class="form-control" id="confirm_password" placeholder="Confirm Password">
+                </div>
+                <button type="submit" class="btn great">Register</button>
+              </form>
+              <p class="note"><a href="/">Already a Member? Login Now..</a></p>
+                {% if messages %}
+                  {% for msg in messages %}
+                    {%if 'regtag' in msg.tags%}
+                       <p class='green'>{{msg.message}}</p>
+                    {%endif%}
+                  {% endfor %}
+                {% endif %}  
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Container ends -->
+      </body>
+  </html>
+
+    
